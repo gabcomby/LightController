@@ -1,13 +1,19 @@
 import cv2
+indexWebcam = 0 #Index de la webcam à utiliser
+webcamIsOpen = False
+widthWebcam = 640
+heightWebcam = 480
 
 def openWebcam():
-    cam = cv2.VideoCapture(0) #Ouvre la webcam
+    webcamIsOpen = True
+    cam = cv2.VideoCapture(indexWebcam) #Ouvre la webcam
+    cam.set(3, widthWebcam)
+    cam.set(4, heightWebcam)
     while True: #Boucle infinie
-        ret,frame = cam.read() #Lis une frame de la caméra
-        smaller_frame = cv2.resize(frame, (0,0), fx=0.5, fy=0.5)
-        cv2.imshow('Webcam', frame) #Montre l'image dans une fenêtre
-        if cv2.waitKey(1) == 27: #Si on appuie sur ESC ça quitte le programme
+        ret,frame = cam.read()
+        cv2.imshow('Webcam', frame)
+        if cv2.waitKey(1) == 27: #Si on appuie sur ESC ça sort de la boucle infinie
             break
-    print("Fermeture de l'application")
-    cam.release() #Ferme la caméra
+    webcamIsOpen = False
     cv2.destroyAllWindows
+    cam.release() #Ferme la caméra

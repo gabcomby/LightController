@@ -12,8 +12,11 @@ def openWebcam():
     while True: #Boucle infinie
         ret,frame = cam.read()
         cv2.imshow('Webcam', frame)
+        cv2.waitKey(1)
         if cv2.waitKey(1) == 27: #Si on appuie sur ESC ça sort de la boucle infinie
             break
     webcamIsOpen = False
+
+def closeWebcam():
     cv2.destroyAllWindows
-    cam.release() #Ferme la caméra
+    openWebcam.cam.release

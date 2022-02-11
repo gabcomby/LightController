@@ -3,6 +3,7 @@ indexWebcam = 0 #Index de la webcam à utiliser
 webcamIsOpen = False
 widthWebcam = 640
 heightWebcam = 480
+cam = None
 
 def openWebcam():
     webcamIsOpen = True
@@ -19,4 +20,4 @@ def openWebcam():
 
 def closeWebcam():
     cv2.destroyAllWindows
-    openWebcam.cam.release
+    cam.release

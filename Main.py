@@ -1,5 +1,4 @@
 import Webcam as wc
-import cv2
 
 print("╔═══════════════════════╗")
 print(" HandController V. 1.0.0")

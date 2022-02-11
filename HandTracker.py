@@ -1,7 +1,5 @@
 import cv2
 import mediapipe as mp
-import numpy
-import time
 
 class HandTrackProcessor:
     def __init__(self):
@@ -15,5 +13,5 @@ class HandTrackProcessor:
         resultats = self.mains.process(imgCouleur)
         if resultats.multi_hand_landmarks != None:
             for reperes in resultats.multi_hand_landmarks:
-                self.mpDessin.draw_landmarks(img, reperes, self.mpMains.HAND_CONNECTIONS)
+                self.mpDessin.draw_landmarks(img, reperes, self.mpMains.HAND_CONNECTIONS) #Dessine les lignes & points du tracking sur l'image
         return img

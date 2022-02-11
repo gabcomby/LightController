@@ -11,9 +11,10 @@ if reponse == "oui" or reponse == "o":
 else:
     print("Fermeture de l'application")
 """""
-wc.openWebcam()
-while wc.webcamIsOpen == True:
+webcam = wc.Webcam()
+webcam.openWebcam()
+while webcam.webcamIsOpen == True:
     continue
-if wc.webcamIsOpen == False:
-    wc.closeWebcam
+if webcam.webcamIsOpen == False:
+    webcam.closeWebcam
 print("Fermeture de l'application")

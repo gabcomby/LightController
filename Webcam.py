@@ -9,6 +9,7 @@ class Webcam :
         self.heightWebcam = 480
         self.nomFenetre = "Webcam"
         self.cam = None
+        self.handProcessor = ht.HandTrackProcessor()
 
     def openWebcam(self):
         webcamIsOpen = True
@@ -17,7 +18,7 @@ class Webcam :
         cam.set(4, self.heightWebcam)
         while True:  # Boucle infinie
             ret, frame = cam.read()
-            processedImage = ht.analyserImage(frame)
+            processedImage = self.handProcessor.analyserImage(frame)
             cv2.imshow(self.nomFenetre, cv2.flip(processedImage, 1))
             cv2.setWindowProperty(self.nomFenetre, cv2.WND_PROP_TOPMOST, 1)
             cv2.waitKey(1)

@@ -15,7 +15,7 @@ def openWebcam():
     while True: #Boucle infinie
         ret,frame = cam.read()
         processedImage = ht.analyserImage(frame)
-        cv2.imshow(nomFenetre, processedImage)
+        cv2.imshow(nomFenetre, cv2.flip(processedImage,1))
         cv2.setWindowProperty(nomFenetre, cv2.WND_PROP_TOPMOST, 1)
         cv2.waitKey(1)
         if cv2.waitKey(1) == 27: #Si on appuie sur ESC ça sort de la boucle infinie

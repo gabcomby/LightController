@@ -23,6 +23,7 @@ class Webcam :
         while True:  #Boucle infinie
             ret, frame = cam.read()
             processedImage = self.handProcessor.analyserImage(frame) #On envoie l'image se faire analyser dans le HandTracker
+            listeMarqueurs = self.handProcessor.positionMain(frame)
             processedImage = cv2.flip(processedImage,1)
             self.tempsActuel = time.time()
             fps = 1/(self.tempsActuel - self.tempsPrecedent) #Calcul du framerate de la webcam

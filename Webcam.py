@@ -15,27 +15,22 @@ class Webcam :
         self.tempsPrecedent = 0
         self.handProcessor = ht.HandTrackProcessor()
 
-    def openWebcam(self):
-        webcamIsOpen = True
-        cam = cv2.VideoCapture(self.indexWebcam)  #Ouvre la webcam
-        cam.set(3, self.widthWebcam)
-        cam.set(4, self.heightWebcam)
-        while True:  #Boucle infinie
-            ret, frame = cam.read()
-            processedImage = self.handProcessor.analyserImage(frame) #On envoie l'image se faire analyser dans le HandTracker
-            listeMarqueurs = self.handProcessor.positionMain(frame)
-            processedImage = cv2.flip(processedImage,1)
-            self.tempsActuel = time.time()
-            fps = 1/(self.tempsActuel - self.tempsPrecedent) #Calcul du framerate de la webcam
-            self.tempsPrecedent = self.tempsActuel
-            processedImage = cv2.putText(processedImage, str(int(fps)), (10,70), cv2.FONT_HERSHEY_DUPLEX,3,(255,0,255),3)
-            cv2.imshow(self.nomFenetre, processedImage)
-            cv2.setWindowProperty(self.nomFenetre, cv2.WND_PROP_TOPMOST, 1)
-            cv2.waitKey(1)
-            if cv2.waitKey(1) == 27:  #Si on appuie sur ESC ça sort de la boucle infinie
-                break
-        webcamIsOpen = False
+    def openWebcam(self): #Ouvre la webcam et set ses dimentions
+        self.webcamIsOpen = True
+        self.cam = cv2.VideoCapture(self.indexWebcam)
+        self.cam.set(3, self.widthWebcam)
+        self.cam.set(4, self.heightWebcam)
 
-    def closeWebcam(self):
+    def readWebcam(self): #Retourne une image de la webcam
+        while True:  #Boucle infinie
+            ret, frame = self.cam.read()
+            cv2.waitKey(1)
+            #Si on appuie sur ESC ça sort de la boucle infinie
+            if cv2.waitKey(1) == 27:
+                break
+            return frame
+        self.webcamIsOpen = False
+
+    def closeWebcam(self): #Ferme la webcam et le programme
         cv2.destroyAllWindows
         self.cam.release

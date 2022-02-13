@@ -15,10 +15,7 @@ webcam.openWebcam()
 def calculsEtAnalyse(img, tempsPrecedent):
     processedImage = handProcessor.analyserImage(frame)  #On envoie l'image se faire analyser dans le HandTracker
     listeMarqueurs = handProcessor.positionMain(frame)
-    """
-    if len(listeMarqueurs) != 0:
-        print(listeMarqueurs[4])
-    """
+    print(listeMarqueurs)
     processedImage = cv2.flip(processedImage, 1)
     tempsActuel = time.time()
     fps = 1 / (tempsActuel - tempsPrecedent)  #Calcul du framerate de la webcam

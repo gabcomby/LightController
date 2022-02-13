@@ -2,9 +2,11 @@ import cv2
 import mediapipe as mp
 
 class HandTrackProcessor:
-    def __init__(self):
+    def __init__(self, detectionTreshold = 0.7, trackTreshold = 0.5):
+        self.detectionMin = detectionTreshold
+        self.trackMin = trackTreshold
         self.mpMains = mp.solutions.hands
-        self.mains = self.mpMains.Hands()
+        self.mains = self.mpMains.Hands(False, 2, 1, self.detectionMin, self.trackMin)
         self.mpDessin = mp.solutions.drawing_utils
 
 

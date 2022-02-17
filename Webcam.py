@@ -22,14 +22,12 @@ class Webcam :
         self.cam.set(4, self.heightWebcam)
 
     def readWebcam(self): #Retourne une image de la webcam
-        while True:  #Boucle infinie
-            ret, frame = self.cam.read()
-            cv2.waitKey(1)
-            #Si on appuie sur ESC ça sort de la boucle infinie
-            if cv2.waitKey(1) == 27:
-                break
-            return frame
-        self.webcamIsOpen = False
+        ret, frame = self.cam.read()
+        cv2.waitKey(1)
+        #Si on appuie sur ESC ça sort de la boucle infinie
+        if cv2.waitKey(1) == 27:
+            self.webcamIsOpen = False
+        return frame
 
     def closeWebcam(self): #Ferme la webcam et le programme
         cv2.destroyAllWindows

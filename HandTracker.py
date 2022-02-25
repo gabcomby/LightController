@@ -18,13 +18,13 @@ class HandTrackProcessor:
         self.detectionMin = detectionTreshold
         self.trackMin = trackTreshold
         self.mpMains = mp.solutions.hands
-        self.mains = self.mpMains.Hands(False, 2, 1, self.detectionMin, self.trackMin)
+        self.mains = self.mpMains.Hands(False, 1, 1, self.detectionMin, self.trackMin)
         self.mpDessin = mp.solutions.drawing_utils
-        self.listeMarqueurs = []
+        self.listeMarqueurs = [None]*21
 
 
     def analyserImage(self, img):
-        self.listeMarqueurs.clear()
+        indexMarqueur = 0
         h, w, c = img.shape
         imgCouleur = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         self.resultats = self.mains.process(imgCouleur) #Analyse l'image à la recherche d'une main
@@ -33,7 +33,8 @@ class HandTrackProcessor:
                 self.mpDessin.draw_landmarks(img, reperes, self.mpMains.HAND_CONNECTIONS) #Dessine les points de repère et les lignes qui les relie sur la main
                 for lm in reperes.landmark: #Pour chaque repère, on analyse le ID et les positions X&Y
                     cx, cy = int(lm.x*w), int(lm.y*h) #Calcule la position en X&Y relative à la taille de la caméra des repères de la main (en pixels)
-                    self.listeMarqueurs.append([cx, cy]) #Ajoute les positions X&Y selon le ID du marqueur dans un tableau
+                    self.listeMarqueurs[indexMarqueur] = (cx, cy) #Ajoute les positions X&Y selon le ID du marqueur dans un tableau
+                    indexMarqueur = indexMarqueur+1
         return img, self.listeMarqueurs
 
     def predictionGeste(self, listeMarqueurs):

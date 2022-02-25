@@ -1,9 +1,10 @@
 import Webcam as wc
 import HandTracker as ht
 import cv2
+import numpy as np
 
 print("╔═══════════════════════╗")
-print(" HandController V. 0.1.0")
+print(" HandController V. 0.3.0")
 print("╚═══════════════════════╝")
 webcam = wc.Webcam()
 handProcessor = ht.HandTrackProcessor()
@@ -14,7 +15,7 @@ listeMarqueurs = []
 def calculsEtAnalyse(img, listeMarqueurs):
     listeMarqueurs.clear()
     processedImage, listeMarqueurs = handProcessor.analyserImage(img)  #On envoie l'image se faire analyser dans le HandTracker
-    if(len(listeMarqueurs) != 0):
+    if(listeMarqueurs[0] != None):
         handProcessor.predictionGeste(listeMarqueurs)
     processedImage = cv2.flip(processedImage, 1)
     return processedImage

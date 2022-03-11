@@ -21,6 +21,7 @@ class HandTrackProcessor:
         self.mains = self.mpMains.Hands(False, 1, 1, self.detectionMin, self.trackMin)
         self.mpDessin = mp.solutions.drawing_utils
         self.listeMarqueurs = [None]*21
+        self.pastNomGeste = None
 
 
     def analyserImage(self, img):
@@ -41,4 +42,6 @@ class HandTrackProcessor:
         prediction = handGestureModel.predict([listeMarqueurs])
         IDGeste = np.argmax(prediction)
         nomGeste = handGestureNames[IDGeste]
-        print(nomGeste)
+        if(nomGeste != self.pastNomGeste):
+            print(nomGeste)
+            self.pastNomGeste = nomGeste

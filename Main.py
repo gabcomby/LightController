@@ -1,7 +1,10 @@
 import Webcam as wc
 import HandTracker as ht
 import cv2
-import numpy as np
+import time
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication, QMainWindow
+import sys
 
 print("╔═══════════════════════╗")
 print(" HandController V. 0.3.0")
@@ -10,20 +13,28 @@ webcam = wc.Webcam()
 handProcessor = ht.HandTrackProcessor()
 webcam.openWebcam()
 listeMarqueurs = []
+global timeStart
+timeStart = time.time()
+global timeFinish
+timeFinish = time.time()
 
 ########################################################################################################################
 def calculsEtAnalyse(img, listeMarqueurs):
+    global timeStart
+    global timeFinish
     listeMarqueurs.clear()
     processedImage, listeMarqueurs = handProcessor.analyserImage(img)  #On envoie l'image se faire analyser dans le HandTracker
-    if(listeMarqueurs[0] != None):
-        handProcessor.predictionGeste(listeMarqueurs)
+    if timeFinish - timeStart >= 1:
+        if(listeMarqueurs[0] != None):
+            handProcessor.predictionGeste(listeMarqueurs)
+        timeStart = timeFinish
     processedImage = cv2.flip(processedImage, 1)
+    timeFinish = time.time()
     return processedImage
 ########################################################################################################################
 
 while webcam.webcamIsOpen == True:
-    frame =webcam.readWebcam()
-    processedImage = calculsEtAnalyse(frame, listeMarqueurs)
-    #processedImage = cv2.putText(processedImage, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_DUPLEX, 3, (255, 0, 255), 3)
-    cv2.imshow("Webcam", processedImage)
+    frame = webcam.readWebcam()
+    frame = calculsEtAnalyse(frame, listeMarqueurs)
+    cv2.imshow("Webcam", frame)
 webcam.closeWebcam

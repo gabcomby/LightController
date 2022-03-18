@@ -5,6 +5,11 @@ from tensorflow.python import keras
 from keras.models import load_model
 import numpy as np
 
+#POUR CETTE PARTIE, NOUS AVONS UTILISÉ LE TUTORIEL SUIVANT POUR LE SUIVI DES MAINS AVEC MEDIAPIPE
+#https://youtu.be/NZde8Xt78Iw
+#NOUS AVONS ÉGALEMENT UTILISÉ LE MODÈLE FOURNI DANS LE TUTORIEL SUIVANT POUR LA RECONNAISSANCE DES GESTES
+#https://techvidvan.com/tutorials/hand-gesture-recognition-tensorflow-opencv/
+
 #Charge le modèle de reconnaissance de gestes dans TensorFlow & Keras
 handGestureModel = load_model('hand_gesture_dataset')
 
@@ -22,7 +27,6 @@ class HandTrackProcessor:
         self.mpDessin = mp.solutions.drawing_utils
         self.listeMarqueurs = [None]*21
         self.pastNomGeste = None
-
 
     def analyserImage(self, img):
         indexMarqueur = 0

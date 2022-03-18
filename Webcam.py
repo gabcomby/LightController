@@ -2,6 +2,9 @@ import cv2
 import HandTracker as ht
 import time
 
+#NOUS AVONS SUIVI LA SÉRIE DE TUTORIEL SUIVANTE POUR APPRENDRE À SE SERVIR DE OPENCV
+#https://youtube.com/playlist?list=PLzMcBGfZo4-lUA8uGjeXhBUUzPYc6vZRn
+
 class Webcam :
     def __init__(self):
         self.closeWebcam = None

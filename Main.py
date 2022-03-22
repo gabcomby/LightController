@@ -1,5 +1,6 @@
 import Webcam as wc
 import HandTracker as ht
+import LightController as lc
 import cv2
 import time
 from PyQt5 import QtWidgets
@@ -11,6 +12,8 @@ print(" HandController V. 0.3.0")
 print("╚═══════════════════════╝")
 webcam = wc.Webcam()
 handProcessor = ht.HandTrackProcessor()
+lightController = lc.LightController()
+lightController.allumerAmpoule()
 webcam.openWebcam()
 listeMarqueurs = []
 global timeStart
@@ -35,6 +38,7 @@ def calculsEtAnalyse(img, listeMarqueurs):
 
 while webcam.webcamIsOpen == True:
     frame = webcam.readWebcam()
-    frame = calculsEtAnalyse(frame, listeMarqueurs)
+    frame= calculsEtAnalyse(frame, listeMarqueurs)
     cv2.imshow("Webcam", frame)
 webcam.closeWebcam
+lightController.eteindreAmpoule()

@@ -45,6 +45,8 @@ def controleDeLumière(lightController):
         lightController.allumerAmpoule()
     elif nomGeste == "stop":
         lightController.eteindreAmpoule()
+    elif nomGeste == "call me":
+        lightController.easterEgg()
 
 
 while webcam.webcamIsOpen == True:
@@ -52,7 +54,7 @@ while webcam.webcamIsOpen == True:
     frame = calculsEtAnalyse(frame, listeMarqueurs)
     if nomGeste != vieuxGeste and nomGeste != None:
         print(nomGeste)
-        #controleDeLumière(lightController)
+        controleDeLumière(lightController)
         vieuxGeste = nomGeste
     cv2.imshow("Webcam", frame)
 webcam.closeWebcam

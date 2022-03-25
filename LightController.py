@@ -6,9 +6,14 @@ class LightController:
         self.headers = {"Authorization": "Bearer %s" % self.tokenAPI,}
 
     def allumerAmpoule(self):
-        payload = {"power": "on",}
+        payload = {"power": "on",
+                   "color" : "white",}
         response = requests.put('https://api.lifx.com/v1/lights/label:LIFX Bulb/state', data=payload, headers=self.headers)
 
     def eteindreAmpoule(self):
         payload = {"power": "off",}
+        response = requests.put('https://api.lifx.com/v1/lights/label:LIFX Bulb/state', data=payload, headers=self.headers)
+
+    def easterEgg(self):
+        payload = {"color": "red", }
         response = requests.put('https://api.lifx.com/v1/lights/label:LIFX Bulb/state', data=payload, headers=self.headers)

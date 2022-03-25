@@ -8,10 +8,11 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 
 print("╔═══════════════════════╗")
-print(" HandController V. 0.3.0")
+print(" HandController V. 0.5.0")
 print("╚═══════════════════════╝")
 global nomGeste
-nomGeste = "UWU"
+nomGeste = "None"
+vieuxGeste = "NoneTest"
 webcam = wc.Webcam()
 handProcessor = ht.HandTrackProcessor()
 lightController = lc.LightController()
@@ -42,7 +43,9 @@ def calculsEtAnalyse(img, listeMarqueurs):
 while webcam.webcamIsOpen == True:
     frame = webcam.readWebcam()
     frame = calculsEtAnalyse(frame, listeMarqueurs)
-    print(nomGeste)
+    if nomGeste != vieuxGeste:
+        print(nomGeste)
+    vieuxGeste = nomGeste
     cv2.imshow("Webcam", frame)
 webcam.closeWebcam
 lightController.eteindreAmpoule()

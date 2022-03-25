@@ -16,7 +16,6 @@ vieuxGeste = "NoneTest"
 webcam = wc.Webcam()
 handProcessor = ht.HandTrackProcessor()
 lightController = lc.LightController()
-lightController.allumerAmpoule()
 webcam.openWebcam()
 listeMarqueurs = []
 global timeStart
@@ -40,12 +39,21 @@ def calculsEtAnalyse(img, listeMarqueurs):
     return processedImage
 ########################################################################################################################
 
+def controleDeLumière(lightController):
+    global nomGeste
+    if nomGeste == "fist":
+        lightController.allumerAmpoule()
+    elif nomGeste == "stop":
+        lightController.eteindreAmpoule()
+
+
 while webcam.webcamIsOpen == True:
     frame = webcam.readWebcam()
     frame = calculsEtAnalyse(frame, listeMarqueurs)
-    if nomGeste != vieuxGeste:
+    if nomGeste != vieuxGeste and nomGeste != None:
         print(nomGeste)
-    vieuxGeste = nomGeste
+        #controleDeLumière(lightController)
+        vieuxGeste = nomGeste
     cv2.imshow("Webcam", frame)
 webcam.closeWebcam
 lightController.eteindreAmpoule()

@@ -10,6 +10,8 @@ import sys
 print("╔═══════════════════════╗")
 print(" HandController V. 0.3.0")
 print("╚═══════════════════════╝")
+global nomGeste
+nomGeste = "UWU"
 webcam = wc.Webcam()
 handProcessor = ht.HandTrackProcessor()
 lightController = lc.LightController()
@@ -25,11 +27,12 @@ timeFinish = time.time()
 def calculsEtAnalyse(img, listeMarqueurs):
     global timeStart
     global timeFinish
+    global nomGeste
     listeMarqueurs.clear()
     processedImage, listeMarqueurs = handProcessor.analyserImage(img)  #On envoie l'image se faire analyser dans le HandTracker
     if timeFinish - timeStart >= 1:
         if(listeMarqueurs[0] != None):
-            handProcessor.predictionGeste(listeMarqueurs)
+            nomGeste = handProcessor.predictionGeste(listeMarqueurs)
         timeStart = timeFinish
     processedImage = cv2.flip(processedImage, 1)
     timeFinish = time.time()
@@ -38,7 +41,8 @@ def calculsEtAnalyse(img, listeMarqueurs):
 
 while webcam.webcamIsOpen == True:
     frame = webcam.readWebcam()
-    frame= calculsEtAnalyse(frame, listeMarqueurs)
+    frame = calculsEtAnalyse(frame, listeMarqueurs)
+    print(nomGeste)
     cv2.imshow("Webcam", frame)
 webcam.closeWebcam
 lightController.eteindreAmpoule()

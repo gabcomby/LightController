@@ -42,10 +42,12 @@ class HandTrackProcessor:
                     indexMarqueur = indexMarqueur+1
         return img, self.listeMarqueurs
 
+    #Méthode qui retourne l'état de la main analysée
     def predictionGeste(self, listeMarqueurs):
         prediction = handGestureModel.predict([listeMarqueurs])
         IDGeste = np.argmax(prediction)
         nomGeste = handGestureNames[IDGeste]
-        if(nomGeste != self.pastNomGeste):
-            print(nomGeste)
-            self.pastNomGeste = nomGeste
+        if nomGeste != None :
+            if(nomGeste != self.pastNomGeste):
+                self.pastNomGeste = nomGeste
+                return nomGeste

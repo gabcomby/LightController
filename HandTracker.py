@@ -1,5 +1,7 @@
 import cv2
 import mediapipe as mp
+import os
+os.environ["CUDA_VISIBLE_DEVICES"]="-1"
 import tensorflow as tf
 from tensorflow.python import keras
 from keras.models import load_model

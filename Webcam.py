@@ -8,7 +8,7 @@ import time
 class Webcam :
     def __init__(self):
         self.closeWebcam = None
-        self.indexWebcam = 1
+        self.indexWebcam = 0
         self.webcamIsOpen = False
         self.widthWebcam = 640
         self.heightWebcam = 480

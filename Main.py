@@ -6,6 +6,7 @@ import time
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
+#C:\Users\comby\AppData\Local\Programs\Python\Python38\Scripts\pyuic5 -x MainMenu.ui -o menuprincipal.py
 
 print("╔═══════════════════════╗")
 print(" HandController V. 0.5.0")

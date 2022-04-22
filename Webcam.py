@@ -1,6 +1,5 @@
 import cv2
-import HandTracker as ht
-import time
+#import HandTracker as ht
 
 #NOUS AVONS SUIVI LA SÉRIE DE TUTORIEL SUIVANTE POUR APPRENDRE À SE SERVIR DE OPENCV
 #https://youtube.com/playlist?list=PLzMcBGfZo4-lUA8uGjeXhBUUzPYc6vZRn
@@ -16,7 +15,7 @@ class Webcam :
         self.cam = None
         self.tempsActuel = 0
         self.tempsPrecedent = 0
-        self.handProcessor = ht.HandTrackProcessor()
+        #self.handProcessor = ht.HandTrackProcessor()
 
     def openWebcam(self): #Ouvre la webcam et set ses dimentions
         self.webcamIsOpen = True

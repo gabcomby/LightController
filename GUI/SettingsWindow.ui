@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ParametersWindpw</class>
+ <widget class="QMainWindow" name="ParametersWindpw">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>960</width>
+    <height>540</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget#centralwidget{
+background-color: qlineargradient(spread:pad, x1:0.0753518, y1:0.08, x2:1, y2:1, stop:0 rgba(255, 0, 255, 255), stop:1 rgba(0, 255, 255, 255));}</string>
+   </property>
+   <widget class="QLabel" name="TitreFenetre">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>-10</y>
+      <width>911</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Black</family>
+      <pointsize>40</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Paramètres et personnalisation</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="ApiKeyTextBox">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>120</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Black</family>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{
+	color:rgb(0, 0, 0);
+	padding-left: 70px;
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>LIFX API Key</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="BulbLabelTextBox">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>260</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Black</family>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{
+	color:rgb(0, 0, 0);
+	padding-left: 70px;
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>LIFX Bulb Label</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BoutonApiKey">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>190</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Soumettre</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BoutonBulbLabel">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>320</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Soumettre</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BoutonRetourMenu">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>450</y>
+      <width>131</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Retour au menu principal</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Instructions">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>360</y>
+      <width>721</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Black</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Si vous ne savez pas comment générer votre LIFX API Key, veuillez vous référer au site web suivant: https://community.lifx.com/t/creating-a-lifx-http-api-token/25 </string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>960</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

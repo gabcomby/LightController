@@ -1,4 +1,5 @@
 import requests
+#LIFX API TOKEN : c9a2305d2badf5dcf161325fc84c5a1249a9d8827fd4834e245b9dc8e51fce40
 
 class LightController:
     def __init__(self):

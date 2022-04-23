@@ -5,10 +5,9 @@ import cv2
 import time
 from Main_GUI import *
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
-import os
 #C:\Users\comby\AppData\Local\Programs\Python\Python38\Scripts\pyuic5 -x MainMenu.ui -o Main_GUI.py
+
 def activerMain():
     print("╔═══════════════════════╗")
     print(" HandController V. 0.5.0")
@@ -63,22 +62,24 @@ def activerMain():
     webcam.closeWebcam
     lightController.eteindreAmpoule()
 
-class ProgrammeVisuel(Ui_MainWindow):
+class MainMenu(Ui_MainWindow):
     def __init__(self, window):
         self.setupUi(window)
         self.boutonDemarrer.clicked.connect(self.demarrer)
         self.boutonArret.clicked.connect(self.arreter)
     def demarrer(self):
-        print("demarrer")
         activerMain()
     def arreter(self):
-        print("arret")
         sys.exit()
 
 
 
 app = QtWidgets.QApplication(sys.argv)
+widget = QtWidgets.QStackedWidget()
 MainWindow = QtWidgets.QMainWindow()
-ui = ProgrammeVisuel(MainWindow)
-MainWindow.show()
+ui = MainMenu(MainWindow)
+widget.addWidget(MainWindow)
+widget.setFixedWidth(960)
+widget.setFixedHeight(540)
+widget.show()
 app.exec_()

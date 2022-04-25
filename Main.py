@@ -4,9 +4,12 @@ import LightController as lc
 import cv2
 import time
 from Main_GUI import *
+from Settings_GUI import *
 from PyQt5 import QtWidgets
 import sys
 #C:\Users\comby\AppData\Local\Programs\Python\Python38\Scripts\pyuic5 -x MainMenu.ui -o Main_GUI.py
+
+lightController = lc.LightController()
 
 def activerMain():
     print("╔═══════════════════════╗")
@@ -17,7 +20,7 @@ def activerMain():
     vieuxGeste = "NoneTest"
     webcam = wc.Webcam()
     handProcessor = ht.HandTrackProcessor()
-    lightController = lc.LightController()
+    #lightController = lc.LightController()
     webcam.openWebcam()
     listeMarqueurs = []
     global timeStart
@@ -67,18 +70,39 @@ class MainMenu(Ui_MainWindow):
         self.setupUi(window)
         self.boutonDemarrer.clicked.connect(self.demarrer)
         self.boutonArret.clicked.connect(self.arreter)
+        self.boutonParametre.clicked.connect(self.settingsMenu)
     def demarrer(self):
         activerMain()
     def arreter(self):
         sys.exit()
+    def settingsMenu(self):
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+class SettingsMenu(Ui_ParametersWindpw):
+    def __init__(self, window):
+        self.setupUi(window)
+        self.BoutonApiKey.clicked.connect(self.apiSubmit)
+        self.BoutonBulbLabel.clicked.connect(self.labelSubmit)
+        self.BoutonRetourMenu.clicked.connect(self.retourMenu)
+    def apiSubmit(self):
+        apiKey = self.ApiKeyTextBox.text()
+        lightController.tokenAPI = apiKey
+    def labelSubmit(self):
+        bulbLabel = self.BulbLabelTextBox.text()
+        print(bulbLabel)
+    def retourMenu(self):
+        widget.setCurrentIndex(widget.currentIndex() - 1)
 
 
 
 app = QtWidgets.QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
 MainWindow = QtWidgets.QMainWindow()
+SettingsWindow = QtWidgets.QMainWindow()
 ui = MainMenu(MainWindow)
+ui2 = SettingsMenu(SettingsWindow)
 widget.addWidget(MainWindow)
+widget.addWidget(SettingsWindow)
 widget.setFixedWidth(960)
 widget.setFixedHeight(540)
 widget.show()

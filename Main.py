@@ -13,7 +13,7 @@ lightController = lc.LightController()
 
 def activerMain():
     print("╔═══════════════════════╗")
-    print(" HandController V. 0.5.0")
+    print(" HandController V. 0.9.0")
     print("╚═══════════════════════╝")
     global nomGeste
     nomGeste = "None"
@@ -87,9 +87,11 @@ class SettingsMenu(Ui_ParametersWindpw):
     def apiSubmit(self):
         apiKey = self.ApiKeyTextBox.text()
         lightController.tokenAPI = apiKey
+        lightController.changerApiKey(apiKey)
     def labelSubmit(self):
         bulbLabel = self.BulbLabelTextBox.text()
-        print(bulbLabel)
+        lightController.label = bulbLabel
+        lightController.changerBulbLabel(bulbLabel)
     def retourMenu(self):
         widget.setCurrentIndex(widget.currentIndex() - 1)
 

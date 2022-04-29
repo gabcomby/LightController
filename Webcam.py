@@ -1,36 +1,28 @@
 import cv2
-#import HandTracker as ht
-
-#NOUS AVONS SUIVI LA SÉRIE DE TUTORIEL SUIVANTE POUR APPRENDRE À SE SERVIR DE OPENCV
-#https://youtube.com/playlist?list=PLzMcBGfZo4-lUA8uGjeXhBUUzPYc6vZRn
 
 class Webcam :
     def __init__(self):
-        self.closeWebcam = None
         self.indexWebcam = 0
         self.webcamIsOpen = False
         self.widthWebcam = 640
         self.heightWebcam = 480
         self.nomFenetre = "Webcam"
         self.cam = None
-        self.tempsActuel = 0
-        self.tempsPrecedent = 0
-        #self.handProcessor = ht.HandTrackProcessor()
 
+    #Attribue la webcam à notre programme et démarre la boucle infinie de lecture de la caméra
     def openWebcam(self): #Ouvre la webcam et set ses dimentions
         self.webcamIsOpen = True
         self.cam = cv2.VideoCapture(self.indexWebcam)
         self.cam.set(3, self.widthWebcam)
         self.cam.set(4, self.heightWebcam)
 
-    def readWebcam(self): #Retourne une image de la webcam
+    #Lis une image de la webcam et la retourne
+    def readWebcam(self):
         ret, frame = self.cam.read()
         cv2.waitKey(1)
-        #Si on appuie sur ESC ça sort de la boucle infinie
-        if cv2.waitKey(1) == 27:
-            self.webcamIsOpen = False
         return frame
 
-    def closeWebcam(self): #Ferme la webcam et le programme
+    #Ferme la webcam de manière sécuritaire
+    def closeWebcam(self):
         cv2.destroyAllWindows
         self.cam.release

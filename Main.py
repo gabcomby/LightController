@@ -7,7 +7,6 @@ from Main_GUI import *
 from Settings_GUI import *
 from PyQt5 import QtWidgets
 import sys
-#C:\Users\comby\AppData\Local\Programs\Python\Python38\Scripts\pyuic5 -x MainMenu.ui -o Main_GUI.py
 
 lightController = lc.LightController()
 
@@ -93,12 +92,10 @@ class SettingsMenu(Ui_ParametersWindpw):
     #Bouton pour submit la nouvelle API KEY
     def apiSubmit(self):
         apiKey = self.ApiKeyTextBox.text()
-        lightController.tokenAPI = apiKey
         lightController.changerApiKey(apiKey)
     #Bouton pour submit le nouveau Bulb Label
     def labelSubmit(self):
         bulbLabel = self.BulbLabelTextBox.text()
-        lightController.label = bulbLabel
         lightController.changerBulbLabel(bulbLabel)
     #Bouton pour retourner au menu principal
     def retourMenu(self):

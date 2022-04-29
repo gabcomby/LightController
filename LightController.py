@@ -1,7 +1,5 @@
 import requests
 import json
-#LIFX API TOKEN : c9a2305d2badf5dcf161325fc84c5a1249a9d8827fd4834e245b9dc8e51fce40
-#LIFX Bulb Token : LIFX Bulb
 
 #Objet qui contrôle la lumière connectée LIFX
 class LightController:

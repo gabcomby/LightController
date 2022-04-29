@@ -10,7 +10,7 @@ class Webcam :
         self.cam = None
 
     #Attribue la webcam à notre programme et démarre la boucle infinie de lecture de la caméra
-    def openWebcam(self): #Ouvre la webcam et set ses dimentions
+    def openWebcam(self):
         self.webcamIsOpen = True
         self.cam = cv2.VideoCapture(self.indexWebcam)
         self.cam.set(3, self.widthWebcam)

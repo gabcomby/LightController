@@ -11,6 +11,12 @@ os.environ["CUDA_VISIBLE_DEVICES"]="-1"
 
 #Charge le modèle de reconnaissance de gestes dans TensorFlow & Keras
 handGestureModel = load_model('./hand_gesture_dataset')
+'''
+Le modèle TensorFlow utilisé provient de ce tutoriel détaillé que nous avons trouvé en ligne:
+https://techvidvan.com/tutorials/hand-gesture-recognition-tensorflow-opencv/
+Nous avons aussi utilisé ce tutoriel comme complément à celui sur Mediapipe afin de nous assurer que la reconnaissance
+de nos mains était correctement implémentée.
+'''
 
 #Charge les noms des différentes gestes
 fichier = open('./hand_gesture.names', 'r')

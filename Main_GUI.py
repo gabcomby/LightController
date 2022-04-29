@@ -57,7 +57,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.TitreProgramme.setText(_translate("MainWindow", "HandController V.0.9.0"))
+        self.TitreProgramme.setText(_translate("MainWindow", "HandController V.1.0.0"))
         self.boutonDemarrer.setText(_translate("MainWindow", "Démarrer"))
         self.boutonParametre.setText(_translate("MainWindow", "Paramètres"))
         self.boutonArret.setText(_translate("MainWindow", "Arrêter"))

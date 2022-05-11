@@ -12,6 +12,7 @@ class LightController:
         self.headers = {"Authorization": "Bearer %s" % self.tokenAPI,}
         self.label = str(self.donneesSauvegardees['bulbLabel'])
         self.urlLumiere = 'https://api.lifx.com/v1/lights/label:' + self.label + '/state'
+        self.luminosite = 0.7
 
     def allumerAmpoule(self):
         payload = {"power": "on",
@@ -46,3 +47,18 @@ class LightController:
         with open('./SavedSettings.json', 'w') as f:
             json.dump(donnees, f)
             f.close()
+
+    #Méthode qui change la luminosité de l'ampoule
+    def changerLuminosité(self,monterLuminosite):
+
+        if monterLuminosite :
+            self.luminosite = self.luminosite + 0.1
+            if self.luminosite > 1.0 :
+                self.luminosite = 1.0
+        elif not monterLuminosite :
+            self.luminosite = self.luminosite - 0.1
+            if self.luminosite < 0:
+                self.luminosite = 0
+
+        payload = {"brightness": self.luminosite, }
+        response = requests.put(self.urlLumiere, data=payload, headers=self.headers)

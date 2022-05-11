@@ -28,6 +28,7 @@ def activerMain():
     global derniereDistance
     derniereDistance = 10000
 
+
     #Méthode qui calcule la distance entre le pouce et l'index dans l'image et la retourne
     def calculerDistancePouceIndex(positionIndex, positionPouce, listeMarqueurs):
         distancePouceIndex = 100
@@ -71,12 +72,11 @@ def activerMain():
         if not calculerGeste:
             distance = calculerDistancePouceIndex(positionIndex, positionPouce, listeMarqueurs)
             distanceAugmente = variationDistance(derniereDistance, distance)
+            lightController.changerLuminosité(distanceAugmente)
             derniereDistance = distance
-            print("Mode luminosité")
             timeFinish = time.time()
             if timeFinish - timeStart >= 10:
                 calculerGeste = True
-
         processedImage = cv2.flip(processedImage, 1)
         return processedImage
     ####################################################################################################################

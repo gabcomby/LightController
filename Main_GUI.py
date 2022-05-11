@@ -42,7 +42,7 @@ class Ui_MainWindow(object):
         self.boutonArret.setFont(fontButtons)
         self.boutonArret.setObjectName("boutonArret")
         self.boutonLuminosite = QtWidgets.QPushButton(self.centralwidget)
-        self.boutonLuminosite.setGeometry(QtCore.QRect(50, 200, 100, 40))
+        self.boutonLuminosite.setGeometry(QtCore.QRect(700, 400, 100, 40))
         self.boutonLuminosite.setFont(fontButtons)
         self.boutonLuminosite.setObjectName("boutonLuminosite")
         MainWindow.setCentralWidget(self.centralwidget)

@@ -50,7 +50,6 @@ class LightController:
 
     #Méthode qui change la luminosité de l'ampoule
     def changerLuminosité(self,monterLuminosite):
-
         if monterLuminosite :
             self.luminosite = self.luminosite + 0.1
             if self.luminosite > 1.0 :
@@ -59,6 +58,5 @@ class LightController:
             self.luminosite = self.luminosite - 0.1
             if self.luminosite < 0:
                 self.luminosite = 0
-
         payload = {"brightness": self.luminosite, }
         response = requests.put(self.urlLumiere, data=payload, headers=self.headers)

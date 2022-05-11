@@ -27,7 +27,6 @@ def activerMain():
     global derniereDistance
     derniereDistance = 10000
 
-
     #Méthode qui calcule la distance entre le pouce et l'index dans l'image et la retourne
     def calculerDistancePouceIndex(positionIndex, positionPouce, listeMarqueurs):
         distancePouceIndex = 100
@@ -38,11 +37,13 @@ def activerMain():
         return distancePouceIndex
 
     def variationDistance(derniereDistance, distance):
-        distanceAugmente = True
-        if (distance-derniereDistance) > 0:
+        distanceAugmente = None
+        deltaDistance = distance-derniereDistance
+        if  deltaDistance >= 25:
+            distanceAugmente = True
+        elif deltaDistance <= -25:
             distanceAugmente = False
         return distanceAugmente
-
     ####################################################################################################################
     #Méthode qui envoie chaque image capturée par OpenCV se faire calculer par HandController.py
     def calculsEtAnalyse(img, listeMarqueurs):
@@ -69,7 +70,7 @@ def activerMain():
             distance = calculerDistancePouceIndex(positionIndex, positionPouce, listeMarqueurs)
             distanceAugmente = variationDistance(derniereDistance, distance)
             derniereDistance = distance
-        print(distanceAugmente)
+
         processedImage = cv2.flip(processedImage, 1)
         return processedImage
     ####################################################################################################################

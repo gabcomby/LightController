@@ -23,7 +23,8 @@ def activerMain():
     timeStart = time.time()
     global timeFinish
     timeFinish = time.time()
-    calculerGeste = False
+    global calculerGeste #Ici
+    calculerGeste = True #Ici
     global derniereDistance
     derniereDistance = 10000
 
@@ -51,6 +52,7 @@ def activerMain():
         global timeFinish
         global nomGeste
         global derniereDistance
+        global calculerGeste #Ici
         distanceAugmente = None
         listeMarqueurs.clear()
         #On envoie l'image se faire analyser pour détecter les points de la main
@@ -70,6 +72,10 @@ def activerMain():
             distance = calculerDistancePouceIndex(positionIndex, positionPouce, listeMarqueurs)
             distanceAugmente = variationDistance(derniereDistance, distance)
             derniereDistance = distance
+            print("Mode luminosité")
+            timeFinish = time.time()
+            if timeFinish - timeStart >= 10:
+                calculerGeste = True
 
         processedImage = cv2.flip(processedImage, 1)
         return processedImage
@@ -103,6 +109,7 @@ class MainMenu(Ui_MainWindow):
         self.boutonDemarrer.clicked.connect(self.demarrer)
         self.boutonArret.clicked.connect(self.arreter)
         self.boutonParametre.clicked.connect(self.settingsMenu)
+        self.boutonLuminosite.clicked.connect(self.modeLuminosite)
     #Bouton qui exécute tout le programme
     def demarrer(self):
         activerMain()
@@ -113,6 +120,11 @@ class MainMenu(Ui_MainWindow):
     #Bouton pour aller dans les settings
     def settingsMenu(self):
         widget.setCurrentIndex(widget.currentIndex()+1)
+    def modeLuminosite(self): #Ici
+        global calculerGeste
+        global timeStart
+        calculerGeste = False
+        timeStart = time.time()
 
 #Code qui indique ce que font les boutons dans le menu des paramètres
 class SettingsMenu(Ui_ParametersWindpw):

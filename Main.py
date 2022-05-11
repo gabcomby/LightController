@@ -10,6 +10,7 @@ import sys
 
 lightController = lc.LightController()
 
+
 def activerMain():
     global nomGeste
     nomGeste = "None"
@@ -22,6 +23,25 @@ def activerMain():
     timeStart = time.time()
     global timeFinish
     timeFinish = time.time()
+    calculerGeste = False
+    global derniereDistance
+    derniereDistance = 10000
+
+
+    #Méthode qui calcule la distance entre le pouce et l'index dans l'image et la retourne
+    def calculerDistancePouceIndex(positionIndex, positionPouce, listeMarqueurs):
+        distancePouceIndex = 100
+        if (len(listeMarqueurs) != 0) and (listeMarqueurs[0] != None):
+            posIndexX, posIndexY = positionIndex[0], positionIndex[1]
+            posPouceX, posPouceY = positionPouce[0], positionPouce[1]
+            distancePouceIndex = ((posPouceX - posIndexX) ** 2) + ((posPouceY - posIndexY) ** 2)
+        return distancePouceIndex
+
+    def variationDistance(derniereDistance, distance):
+        distanceAugmente = True
+        if (distance-derniereDistance) > 0:
+            distanceAugmente = False
+        return distanceAugmente
 
     ####################################################################################################################
     #Méthode qui envoie chaque image capturée par OpenCV se faire calculer par HandController.py
@@ -29,17 +49,28 @@ def activerMain():
         global timeStart
         global timeFinish
         global nomGeste
+        global derniereDistance
+        distanceAugmente = None
         listeMarqueurs.clear()
         #On envoie l'image se faire analyser pour détecter les points de la main
         processedImage, listeMarqueurs = handProcessor.analyserImage(img)
         #On envoie UNIQUEMENT 1 image/seconde se faire analyser par l'algorithme TensorFlow de reconnaissance de mouvement
         #afin d'optimiser les performances du programme
-        if timeFinish - timeStart >= 1:
-            if(listeMarqueurs[0] != None):
-                nomGeste = handProcessor.predictionGeste(listeMarqueurs)
-            timeStart = timeFinish
-        processedImage = cv2.flip(processedImage, 1)
+        positionIndex = listeMarqueurs[8]
+        positionPouce = listeMarqueurs[4]
+        if calculerGeste:
+            if timeFinish - timeStart >= 1:
+                if(listeMarqueurs[0] != None):
+                    nomGeste = handProcessor.predictionGeste(listeMarqueurs)
+                    derniereDistance = calculerDistancePouceIndex(positionIndex, positionPouce, listeMarqueurs)
+                timeStart = timeFinish
         timeFinish = time.time()
+        if not calculerGeste:
+            distance = calculerDistancePouceIndex(positionIndex, positionPouce, listeMarqueurs)
+            distanceAugmente = variationDistance(derniereDistance, distance)
+            derniereDistance = distance
+        print(distanceAugmente)
+        processedImage = cv2.flip(processedImage, 1)
         return processedImage
     ####################################################################################################################
     #Contrôle la lumière si le geste défini est détecté

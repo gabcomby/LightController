@@ -48,7 +48,9 @@ class LightController:
             json.dump(donnees, f)
             f.close()
 
-    #Méthode qui change la luminosité de l'ampoule
+    #Méthode qui change la luminosité de l'ampoule. Augmente laluminosité si monterLuminosite
+    #est vrai, ne fait rien si monterLuminosite est null et la
+    #baisse si monterLuminosite est Faux
     def changerLuminosité(self,monterLuminosite):
         if monterLuminosite :
             self.luminosite = self.luminosite + 0.1

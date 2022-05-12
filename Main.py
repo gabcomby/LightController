@@ -32,12 +32,14 @@ def activerMain():
     #Méthode qui calcule la distance entre le pouce et l'index dans l'image et la retourne
     def calculerDistancePouceIndex(positionIndex, positionPouce, listeMarqueurs):
         distancePouceIndex = 100
+        #Entre dans la boucle et assigne les position des marqueurs du pouce et de l'index
         if (len(listeMarqueurs) != 0) and (listeMarqueurs[0] != None):
             posIndexX, posIndexY = positionIndex[0], positionIndex[1]
             posPouceX, posPouceY = positionPouce[0], positionPouce[1]
             distancePouceIndex = ((posPouceX - posIndexX) ** 2) + ((posPouceY - posIndexY) ** 2)
         return distancePouceIndex
 
+    #Retourne un boolean en fonction de la variation de la distance entre le pouce et l'index
     def variationDistance(derniereDistance, distance):
         distanceAugmente = None
         deltaDistance = distance-derniereDistance
@@ -69,14 +71,19 @@ def activerMain():
                     derniereDistance = calculerDistancePouceIndex(positionIndex, positionPouce, listeMarqueurs)
                 timeStart = timeFinish
         timeFinish = time.time()
+        #Si le boolean calculerGeste n'est pas True, le programme rentre dans cette boucle et effectue
+        # le controle de la luminosité pendant 10
         if not calculerGeste:
             distance = calculerDistancePouceIndex(positionIndex, positionPouce, listeMarqueurs)
             distanceAugmente = variationDistance(derniereDistance, distance)
+            #Change la luminosité de l'objet lightController en fonction du boolean distanceAugmente
             lightController.changerLuminosité(distanceAugmente)
             derniereDistance = distance
             timeFinish = time.time()
+            #Calcule 10 secondes
             if timeFinish - timeStart >= 10:
                 calculerGeste = True
+        #Tourne l'image pour une vue de type "mirroir"
         processedImage = cv2.flip(processedImage, 1)
         return processedImage
     ####################################################################################################################
@@ -120,7 +127,8 @@ class MainMenu(Ui_MainWindow):
     #Bouton pour aller dans les settings
     def settingsMenu(self):
         widget.setCurrentIndex(widget.currentIndex()+1)
-    def modeLuminosite(self): #Ici
+    #Bouton qui change la luminosité
+    def modeLuminosite(self):
         global calculerGeste
         global timeStart
         calculerGeste = False

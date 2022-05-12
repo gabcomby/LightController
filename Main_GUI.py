@@ -13,34 +13,43 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
+        #Crée une fenêtre de résolution 960x540
         MainWindow.resize(960,540)
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
+        #Crée l'arrière-plan avec un dégradé bleu et rose
         self.centralwidget.setStyleSheet("QWidget#centralwidget{\n"
 "background-color: qlineargradient(spread:pad, x1:0.0753518, y1:0.08, x2:1, y2:1, stop:0 rgba(255, 0, 255, 255), stop:1 rgba(0, 255, 255, 255));}")
         self.centralwidget.setObjectName("centralwidget")
+        #Crée un widget de texte qui va afficher le titre du programme
         self.TitreProgramme = QtWidgets.QLabel(self.centralwidget)
         self.TitreProgramme.setGeometry(QtCore.QRect(35, 30, 960, 121))
+        #Crée la police pour le titre du programme
         font = QtGui.QFont()
         font.setFamily("Arial Black")
         font.setPointSize(55)
         self.TitreProgramme.setFont(font)
         self.TitreProgramme.setObjectName("TitreProgramme")
+        #Crée la police pour les boutons
         fontButtons = QtGui.QFont()
         fontButtons.setFamily("Arial Black")
         fontButtons.setPointSize(10)
+        #Crée le bouton démarrer
         self.boutonDemarrer = QtWidgets.QPushButton(self.centralwidget)
         self.boutonDemarrer.setGeometry(QtCore.QRect(440, 200, 100, 40))
         self.boutonDemarrer.setFont(fontButtons)
         self.boutonDemarrer.setObjectName("boutonDemarrer")
+        #Crée le bouton des paramètres
         self.boutonParametre = QtWidgets.QPushButton(self.centralwidget)
         self.boutonParametre.setGeometry(QtCore.QRect(440, 300, 100, 40))
         self.boutonParametre.setFont(fontButtons)
         self.boutonParametre.setObjectName("boutonParametre")
+        #Crée le bouton pour quitter le programme
         self.boutonArret = QtWidgets.QPushButton(self.centralwidget)
         self.boutonArret.setGeometry(QtCore.QRect(440, 400, 100, 40))
         self.boutonArret.setFont(fontButtons)
         self.boutonArret.setObjectName("boutonArret")
+        #Crée le bouton pour activer le mode luminosité
         self.boutonLuminosite = QtWidgets.QPushButton(self.centralwidget)
         self.boutonLuminosite.setGeometry(QtCore.QRect(700, 400, 100, 40))
         self.boutonLuminosite.setFont(fontButtons)
@@ -57,7 +66,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-
+    #Définis le texte pour chaque Widget (titre du programme et boutons)
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))

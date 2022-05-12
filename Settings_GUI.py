@@ -14,18 +14,23 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_ParametersWindpw(object):
     def setupUi(self, ParametersWindpw):
         ParametersWindpw.setObjectName("ParametersWindpw")
+        #Crée une fenêtre de résolution 960x540
         ParametersWindpw.resize(960, 540)
         self.centralwidget = QtWidgets.QWidget(ParametersWindpw)
+        #Crée l'arrière-plan avec un dégradé bleu et rose
         self.centralwidget.setStyleSheet("QWidget#centralwidget{\n"
 "background-color: qlineargradient(spread:pad, x1:0.0753518, y1:0.08, x2:1, y2:1, stop:0 rgba(255, 0, 255, 255), stop:1 rgba(0, 255, 255, 255));}")
         self.centralwidget.setObjectName("centralwidget")
+        #Crée un widget de texte qui va afficher le titre de la fenêtre
         self.TitreFenetre = QtWidgets.QLabel(self.centralwidget)
         self.TitreFenetre.setGeometry(QtCore.QRect(225, 10, 911, 101))
+        #Crée la police pour le titre de la fenêtre
         font = QtGui.QFont()
         font.setFamily("Arial Black")
         font.setPointSize(55)
         self.TitreFenetre.setFont(font)
         self.TitreFenetre.setObjectName("TitreFenetre")
+        #Crée la boîte de texte dans laquelle l'utilisateur entrera sa clé d'API
         self.ApiKeyTextBox = QtWidgets.QLineEdit(self.centralwidget)
         self.ApiKeyTextBox.setGeometry(QtCore.QRect(360, 120, 231, 30))
         font = QtGui.QFont()
@@ -33,6 +38,7 @@ class Ui_ParametersWindpw(object):
         font.setWeight(50)
         self.ApiKeyTextBox.setFont(font)
         self.ApiKeyTextBox.setObjectName("ApiKeyTextBox")
+        #Crée la boîte de texte dans laquelle l'utilisateur entrera le nom de son ampoule
         self.BulbLabelTextBox = QtWidgets.QLineEdit(self.centralwidget)
         self.BulbLabelTextBox.setGeometry(QtCore.QRect(360, 270, 231, 30))
         font = QtGui.QFont()
@@ -44,18 +50,22 @@ class Ui_ParametersWindpw(object):
         fontButtons = QtGui.QFont()
         fontButtons.setFamily("Arial Black")
         fontButtons.setPointSize(10)
+        #Crée le bouton pour soumettre la clé d'API
         self.BoutonApiKey = QtWidgets.QPushButton(self.centralwidget)
         self.BoutonApiKey.setGeometry(QtCore.QRect(430, 170, 100, 40))
         self.BoutonApiKey.setObjectName("BoutonApiKey")
         self.BoutonApiKey.setFont(fontButtons)
+        #Crée le bouton pour soumettre le nom de l'ampoule
         self.BoutonBulbLabel = QtWidgets.QPushButton(self.centralwidget)
         self.BoutonBulbLabel.setGeometry(QtCore.QRect(430, 320, 100, 40))
         self.BoutonBulbLabel.setObjectName("BoutonBulbLabel")
         self.BoutonBulbLabel.setFont(fontButtons)
+        #Crée le bouton pour retourner au menu principal
         self.BoutonRetourMenu = QtWidgets.QPushButton(self.centralwidget)
         self.BoutonRetourMenu.setGeometry(QtCore.QRect(430, 450, 100, 40))
         self.BoutonRetourMenu.setObjectName("BoutonRetourMenu")
         self.BoutonRetourMenu.setFont(fontButtons)
+        #Crée un texte dans lequel on met des instructions
         self.Instructions = QtWidgets.QLabel(self.centralwidget)
         self.Instructions.setGeometry(QtCore.QRect(110, 360, 721, 71))
         font = QtGui.QFont()
@@ -77,6 +87,7 @@ class Ui_ParametersWindpw(object):
         self.retranslateUi(ParametersWindpw)
         QtCore.QMetaObject.connectSlotsByName(ParametersWindpw)
 
+    #Définis le texte pour chaque Widget (titre du programme, boutons et boîte de texte)
     def retranslateUi(self, ParametersWindpw):
         _translate = QtCore.QCoreApplication.translate
         ParametersWindpw.setWindowTitle(_translate("ParametersWindpw", "MainWindow"))
@@ -88,12 +99,3 @@ class Ui_ParametersWindpw(object):
         self.BoutonRetourMenu.setText(_translate("ParametersWindpw", "Retour"))
         self.Instructions.setText(_translate("ParametersWindpw", "Si vous ne savez pas comment générer votre LIFX API Key, veuillez vous référer au site web suivant: https://community.lifx.com/t/creating-a-lifx-http-api-token/25 "))
 
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    ParametersWindpw = QtWidgets.QMainWindow()
-    ui = Ui_ParametersWindpw()
-    ui.setupUi(ParametersWindpw)
-    ParametersWindpw.show()
-    sys.exit(app.exec_())

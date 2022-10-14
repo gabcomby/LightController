@@ -2,7 +2,7 @@
 This program combines the use of computer vision, AI movement recognition algorithm and HTTPS requests to enable a user to remotely control a WiFi connected light with movements of his hand. We also included a way to control luminosity by pinching air, much like with zooming on a phone or a tablet.
 
 # Developers
-This project was developed by [@GabrielC-34](https://github.com/GabrielC-34) and [@GuilhemDM](https://github.com/GuilhemDM).
+This project was developed by [@gabcomby](https://github.com/gabcomby) and [@GuilhemDM](https://github.com/GuilhemDM).
 
 # Technologies and libraries
 This program uses the following Python 3.8 libraries :
